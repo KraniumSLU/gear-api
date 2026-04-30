@@ -1,4 +1,4 @@
-package com.kranium.project.gearapi.modules.tokens;
+package com.kranium.project.gearapi.modules.tokens.dtos;
 
 
 import com.kranium.project.gearapi.modules.users.domain.Role;
