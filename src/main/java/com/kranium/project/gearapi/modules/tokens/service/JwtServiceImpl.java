@@ -8,6 +8,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -58,17 +59,41 @@ public class JwtServiceImpl implements JwtService {
                 .getPayload();
     }
     @Override
-    public boolean isTokenValid(String token){
+    public boolean isTokenValid(String token, UserDetails userDetails){
         try {
             validateToken(token);
-            return true;
+            String username = extractUsername(token);
+            return username.equals(userDetails.getUsername())&& !isTokenExpired(token);
         }catch (RuntimeException e){
             return false;
         }
     }
+
+    @Override
+    public boolean isTokenExpired(String token) {
+        Date expiration = validateToken(token).getExpiration();
+
+        return expiration.before(new Date());
+    }
+
+    @Override
+    public Date extractExpiration(String token) {
+        return validateToken(token).getExpiration();
+    }
+
     @Override
     public String extractUsername(String token){
-        return validateToken(token).get("usernamne",String.class);
+        return validateToken(token).getSubject();
+    }
+
+    @Override
+    public String extractUuid(String token) {
+        return validateToken(token).get("uuid",String.class);
+    }
+
+    @Override
+    public String extractRole(String token) {
+        return validateToken(token).get("role",String.class);
     }
 
     @Override
