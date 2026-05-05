@@ -1,7 +1,7 @@
 package com.kranium.project.gearapi.modules.users.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kranium.project.gearapi.modules.motherclass.domain.Entidade;
+import com.kranium.project.gearapi.modules.identity.inheritanceClass.domain.Entidade;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
