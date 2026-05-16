@@ -1,4 +1,4 @@
-package com.kranium.project.gearapi.modules.identity.domain;
+package com.kranium.project.gearapi.modules.session.domain;
 
 import com.kranium.project.gearapi.modules.identity.inheritanceClass.domain.Entidade;
 import com.kranium.project.gearapi.modules.users.domain.User;
