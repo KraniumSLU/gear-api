@@ -57,7 +57,7 @@ public class UserServiceImp implements UserService{
         }
         findUserId.setEmail(userRequest.email());
         findUserId.setRole(userRequest.role());
-        findUserId.setAtivo(userRequest.ativo());
+        findUserId.setStatus(userRequest.status());
         findUserId.setDataNasci(userRequest.dataNasci());
         log.info("User updated successfully: {}", uuid);
         return mapper.toResponse(findUserId);
